@@ -1,13 +1,11 @@
-import {Router} from 'express';
-import {PrismaClient} from '@prisma/client';
+import { Router } from "express";
+import { getAllJourneys } from "../services/journey";
 
-const prisma = new PrismaClient();
 const journeyRouter = Router();
 
-journeyRouter.get('/', async (_req, res) => {
-    const journeys = await prisma.journey.findMany();
+journeyRouter.get("/", async (_req, res) => {
+    const journeys = await getAllJourneys();
     res.json(journeys);
-}
-);
+});
 
 export default journeyRouter;

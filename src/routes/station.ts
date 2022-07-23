@@ -1,13 +1,11 @@
-import {Router} from 'express';
-import {PrismaClient} from '@prisma/client';
+import { Router } from "express";
+import { getAllStations } from "../services/station";
 
-const prisma = new PrismaClient();
 const stationRouter = Router();
 
-stationRouter.get('/', async (_req, res) => {
-    const stations = await prisma.station.findMany();
+stationRouter.get("/", async (_req, res) => {
+    const stations = await getAllStations();
     res.json(stations);
-}
-);
+});
 
 export default stationRouter;
