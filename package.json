@@ -1,0 +1,11 @@
+{
+  "name": "city-bike-app-backend",
+  "version": "1.0.0",
+  "description": "city bike app nodejs backend for solita dev academy assignment ",
+  "main": "index.js",
+  "scripts": {
+    "test": "node index.js"
+  },
+  "author": "shamsur",
+  "license": "ISC"
+}
