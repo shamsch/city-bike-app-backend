@@ -1,13 +1,13 @@
 {
   "name": "city-bike-app-backend",
   "version": "1.0.0",
-  "description": "city bike app nodejs backend for solita dev academy assignment ",
+  "description": "city bike app nodejs backend for solita dev academy assignment",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.ts"
   },
   "prisma": {
-    "seed": "ts-node prisma/seed.ts"
+    "seed": "ts-node seed.ts"
   },
   "author": "shamsur",
   "license": "ISC",
