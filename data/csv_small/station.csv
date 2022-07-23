@@ -1,0 +1,51 @@
+id,name,address,city,operator,capacity,lon,lat
+501,Hanasaari,Hanasaarenranta 1,Espoo,CityBike Finland,10,24.840319,60.16582
+503,Keilalahti,Keilalahdentie 2,Espoo,CityBike Finland,28,24.827467,60.171524
+505,Westendinasema,Westendintie 1,Espoo,CityBike Finland,16,24.805758,60.168266
+507,Golfpolku,Golfpolku 3,Espoo,CityBike Finland,16,24.796136,60.168143
+509,Revontulentie,Revontulentie 10,Espoo,CityBike Finland,30,24.802938,60.171551
+511,Sateentie,Sateentie 2,Espoo,CityBike Finland,18,24.810688,60.173424
+513,Hakalehto,Merituulentie 18,Espoo,CityBike Finland,24,24.79139,60.173567
+515,Oravannahkatori,Oravannahkatori 1,Espoo,CityBike Finland,16,24.792559,60.175769
+517,Länsituuli,Länsituulenkuja 3,Espoo,CityBike Finland,24,24.802049,60.175358
+518,Tuulimäki,Itätuulenkuja 11,Espoo,CityBike Finland,18,24.806051,60.174144
+519,Tapionaukio,Tapionaukio 9,Espoo,CityBike Finland,26,24.805825,60.176168
+521,Kulttuuriaukio,Kulttuuriaukio 2,Espoo,CityBike Finland,30,24.803942,60.177588
+523,Ahertajantie,Ahertajantie 1,Espoo,CityBike Finland,20,24.797984,60.17875
+525,Mäntyviita,Mäntyviita 2,Espoo,CityBike Finland,10,24.810974,60.178702
+527,Otsolahti,Otsolahdentie 18,Espoo,CityBike Finland,18,24.817423,60.178655
+529,Keilaniemi (M),Keilaniementie 4,Espoo,CityBike Finland,40,24.82895,60.175233
+531,Keilaranta,Keilaranta 13,Espoo,CityBike Finland,24,24.835132,60.178762
+532,Betonimies,Betonimiehenkuja 1,Espoo,CityBike Finland,16,24.831804,60.180027
+533,Tekniikantie,Tekniikantie 3,Espoo,CityBike Finland,18,24.824747,60.180806
+537,Innopoli,Tekniikantie 14,Espoo,CityBike Finland,20,24.81422,60.185096
+538,Hagalundsparken,Tekniikantie 15,Espoo,CityBike Finland,14,24.817403,60.18363
+539,"Aalto University (M), Tietotie",Tietotie 4,Espoo,CityBike Finland,20,24.820099,60.184987
+541,"Aalto University (M), Korkeakoulua",Otaniementie 10,Espoo,CityBike Finland,42,24.826671,60.184312
+543,Otaranta,Otaranta 6,Espoo,CityBike Finland,22,24.837133,60.18483
+545,Sähkömies,Otakaari 3,Espoo,CityBike Finland,12,24.829985,60.188499
+547,Jämeräntaival,Otakaari 18,Espoo,CityBike Finland,30,24.835033,60.188118
+549,Maarinranta,Maarinrannantie 4,Espoo,CityBike Finland,12,24.810193,60.187529
+551,Tietäjä,Valkjärventie 4,Espoo,CityBike Finland,20,24.807083,60.189143
+553,Metsänneidonpolku,Metsänneidonpolku 5,Espoo,CityBike Finland,19,24.806152,60.186731
+555,Kalevalantie,Kalevalantie 7,Espoo,CityBike Finland,21,24.804022,60.184765
+557,Louhentori,Louhentie 16,Espoo,CityBike Finland,16,24.796959,60.18715
+559,Pohjankulma,Louhentie 2,Espoo,CityBike Finland,25,24.794014,60.18288
+561,Koivu-Mankkaa,Urpu 6,Espoo,CityBike Finland,23,24.78576,60.182976
+563,Mankkaanlaaksontie,Mankkaanlaaksontie 1,Espoo,CityBike Finland,26,24.780478,60.188706
+565,Mankkaanaukio,Mankkaantie 3,Espoo,CityBike Finland,20,24.769021,60.194599
+571,Tapiola Sports Park,Urheilupuistontie 3,Espoo,CityBike Finland,32,24.784654,60.177749
+573,Sports Park (M),Jousenpuistonkatu 4,Espoo,CityBike Finland,28,24.779428,60.17465
+575,Tontunmäentie,Tontunmäentie 25,Espoo,CityBike Finland,16,24.769667,60.176107
+577,Olarinluoma,Olarinluoma 19,Espoo,CityBike Finland,18,24.760606,60.180848
+579,Niittymaa,Niittymaantie 2,Espoo,CityBike Finland,21,24.775913,60.171127
+581,Niittykumpu (M),Merituulentie 38,Espoo,CityBike Finland,35,24.763184,60.170758
+583,Haukilahdenkatu,Ahventie 2,Espoo,CityBike Finland,16,24.772708,60.166481
+585,Haukilahdenaukio,Haukilahdenranta 2,Espoo,CityBike Finland,16,24.775882,60.162396
+587,Hauenkallio,Hauenkalliontie 12,Espoo,CityBike Finland,12,24.767831,60.162477
+589,Haukilahdenranta,Haukilahdenranta 13,Espoo,CityBike Finland,16,24.769864,60.158048
+591,Mellstenintie,Mellstenintie 17,Espoo,CityBike Finland,25,24.773993,60.154941
+593,Toppelundintie,Toppelundintie 11,Espoo,CityBike Finland,12,24.782477,60.1591405
+595,Westendintie,Westendintie 34,Espoo,CityBike Finland,16,24.791754,60.158194
+596,Toppelundinportti,Haukilahdenkatu 2,Espoo,CityBike Finland,20,24.7848628,60.1624471
+597,Linnakepolku,Westendintie 99,Espoo,CityBike Finland,10,24.790132,60.1637

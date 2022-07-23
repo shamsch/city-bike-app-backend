@@ -1,0 +1,51 @@
+departure_time,return_time,departure_station_id,departure_station,return_station_id,return_station,duration,covered_distance,month,id
+2021-05-31T23:57:25,2021-06-01T00:05:46,94,Laajalahden aukio,100,Teljäntie,2043.0,500,May,0
+2021-05-31T23:56:59,2021-06-01T00:07:14,82,Töölöntulli,113,Pasilan asema,1870.0,611,May,1
+2021-05-31T23:56:44,2021-06-01T00:03:26,123,Näkinsilta,121,Vilhonvuorenkatu,1025.0,399,May,2
+2021-05-31T23:56:23,2021-06-01T00:29:58,4,Viiskulma,65,Hernesaarenranta,4318.0,2009,May,3
+2021-05-31T23:56:11,2021-06-01T00:02:02,4,Viiskulma,65,Hernesaarenranta,1400.0,350,May,4
+2021-05-31T23:54:48,2021-06-01T00:00:57,292,Koskelan varikko,133,Paavalinpuisto,1713.0,366,May,5
+2021-05-31T23:54:11,2021-06-01T00:17:11,34,Kansallismuseo,81,Stenbäckinkatu,2550.0,1377,May,6
+2021-05-31T23:53:04,2021-06-01T00:14:52,240,Viikin normaalikoulu,281,Puotila (M),5366.0,1304,May,7
+2021-05-31T23:52:03,2021-06-01T00:15:16,116,Linnanmäki,117,Brahen puistikko,3344.0,1393,May,8
+2021-05-31T23:50:19,2021-06-01T00:05:58,116,Linnanmäki,145,Pohjolankatu,3248.0,935,May,9
+2021-05-31T23:50:05,2021-06-01T00:01:22,147,Käpylän asema,232,Oulunkylän asema,1633.0,672,May,10
+2021-05-31T23:50:00,2021-05-31T23:55:48,69,Kalevankatu,62,Välimerenkatu,1131.0,345,May,11
+2021-05-31T23:49:59,2021-05-31T23:59:49,147,Käpylän asema,232,Oulunkylän asema,1695.0,589,May,12
+2021-05-31T23:49:59,2021-05-31T23:55:38,69,Kalevankatu,62,Välimerenkatu,1125.0,336,May,13
+2021-05-31T23:49:36,2021-06-01T00:40:20,547,Jämeräntaival,547,Jämeräntaival,1227.0,3040,May,14
+2021-05-31T23:49:18,2021-06-01T00:05:09,201,Länsisatamankuja,41,Ympyrätalo,4245.0,948,May,15
+2021-05-31T23:48:53,2021-06-01T00:03:49,30,Itämerentori,50,Melkonkuja,2656.0,892,May,16
+2021-05-31T23:48:44,2021-05-31T23:56:06,235,Katariina Saksilaisen katu,239,Viikin tiedepuisto,2107.0,437,May,17
+2021-05-31T23:47:49,2021-05-31T23:51:11,727,Ratsutori,713,Upseerinkatu,549.0,198,May,18
+2021-05-31T23:46:14,2021-05-31T23:55:58,137,Arabian kauppakeskus,44,Sörnäinen (M),1970.0,582,May,19
+2021-05-31T23:46:13,2021-05-31T23:55:22,137,Arabian kauppakeskus,118,Fleminginkatu,1952.0,544,May,20
+2021-05-31T23:45:26,2021-06-01T00:12:04,264,Eränkävijäntori,267,Roihupelto,3134.0,1597,May,21
+2021-05-31T23:45:15,2021-05-31T23:51:54,49,Annankatu,162,Leppäsuonaukio,1186.0,394,May,22
+2021-05-31T23:45:09,2021-05-31T23:49:23,63,Jätkäsaarenlaituri,68,Albertinkatu,1841.0,249,May,23
+2021-05-31T23:44:27,2021-05-31T23:49:46,727,Ratsutori,711,Kirjurinkuja,974.0,314,May,24
+2021-05-31T23:43:10,2021-05-31T23:47:44,625,Suomenlahdentie,611,Matinkartanontie,1064.0,273,May,25
+2021-05-31T23:43:07,2021-05-31T23:46:12,60,Kaapelitehdas,59,Salmisaarenranta,741.0,184,May,26
+2021-05-31T23:43:05,2021-05-31T23:56:16,90,Paciuksenkaari,72,Eteläinen Hesperiankatu,2779.0,787,May,27
+2021-05-31T23:41:33,2021-06-01T00:06:01,30,Itämerentori,19,Rautatientori / itä,2964.0,1464,May,28
+2021-05-31T23:40:50,2021-05-31T23:43:16,4,Viiskulma,3,Kapteeninpuistikko,565.0,145,May,29
+2021-05-31T23:40:48,2021-05-31T23:55:06,703,Elfvik,725,Rummunlyöjänkatu,2787.0,853,May,30
+2021-05-31T23:39:12,2021-05-31T23:45:44,43,Karhupuisto,115,Venttiilikuja,1491.0,390,May,31
+2021-05-31T23:38:39,2021-05-31T23:43:38,30,Itämerentori,201,Länsisatamankuja,904.0,294,May,32
+2021-05-31T23:38:24,2021-05-31T23:42:45,94,Laajalahden aukio,90,Paciuksenkaari,898.0,255,May,33
+2021-05-31T23:37:28,2021-05-31T23:47:30,9,Erottajan aukio,61,Länsisatamankatu,2496.0,600,May,34
+2021-05-31T23:37:25,2021-05-31T23:48:25,96,Huopalahdentie,99,Muusantori,2361.0,660,May,35
+2021-05-31T23:37:17,2021-05-31T23:44:09,117,Brahen puistikko,41,Ympyrätalo,1186.0,408,May,36
+2021-05-31T23:36:00,2021-05-31T23:54:08,78,Messeniuksenkatu,402,Bermudankuja,3924.0,1083,May,37
+2021-05-31T23:34:09,2021-05-31T23:44:32,22,Rautatientori / länsi,43,Karhupuisto,2007.0,619,May,38
+2021-05-31T23:33:58,2021-05-31T23:49:52,1,Kaivopuisto,57,Lauttasaaren ostoskeskus,4515.0,954,May,40
+2021-05-31T23:33:29,2021-05-31T23:54:13,547,Jämeräntaival,547,Jämeräntaival,1872.0,1239,May,41
+2021-05-31T23:32:38,2021-06-01T08:41:05,21,Töölönlahdenkatu,34,Kansallismuseo,551.0,242,May,42
+2021-05-31T23:31:27,2021-05-31T23:57:24,315,Vuosaaren liikuntapuisto,272,Marjaniementie,5495.0,1553,May,43
+2021-05-31T23:31:10,2021-05-31T23:35:18,555,Kalevalantie,557,Louhentori,618.0,244,May,44
+2021-05-31T23:30:45,2021-06-01T15:45:49,573,Urheilupuisto (M),511,Sateentie,2834.0,58499,May,45
+2021-05-31T23:30:19,2021-05-31T23:34:35,31,Marian sairaala,63,Jätkäsaarenlaituri,967.0,243,May,46
+2021-05-31T23:30:06,2021-05-31T23:49:17,547,Jämeräntaival,547,Jämeräntaival,739.0,1146,May,47
+2021-05-31T23:29:30,2021-05-31T23:49:01,41,Ympyrätalo,28,Lastenlehto,2717.0,1166,May,48
+2021-05-31T23:28:16,2021-05-31T23:31:00,82,Töölöntulli,84,Paciuksenkatu,665.0,159,May,49
+2021-05-31T23:27:33,2021-05-31T23:30:47,70,Sammonpuistikko,31,Marian sairaala,724.0,193,May,50
