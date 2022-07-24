@@ -10,9 +10,9 @@ journeyRouter.get("/", async (req: JourneyGetRequest, res: JourneyGetResponse) =
     const page = Number(req.query.page) || 1;
     const orderBy = validateOrderBy(req.query.orderBy);
     const orderDir = validateOrderDir(req.query.orderDir);
+    const search = req.query.search;
 
-
-    const journeys = await getAllJourneys(limit, page, orderBy, orderDir);
+    const journeys = await getAllJourneys(page, limit, orderBy, orderDir, search);
 
     res.json(journeys);
 });
