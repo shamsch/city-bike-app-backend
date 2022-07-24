@@ -1,6 +1,6 @@
 import { PrismaClient } from "@prisma/client";
 import { orderByJourney, orderDir } from "../types";
-import { metersToKilometers, secondsToMinutes } from "../utils/convertUnit";
+import { metersToKilometers, secondsToMinutes, kilometersToMeters, minutesToSeconds } from "../utils/convertUnit";
 
 const prisma = new PrismaClient();
 
@@ -9,14 +9,38 @@ export const getAllJourneys = async (
     limit: number,
     orderBy: orderByJourney,
     orderDir: orderDir,
-    search: string | undefined
+    search: string | undefined,
+    durationMin: number,
+    durationMax: number,
+    distanceMin: number,
+    distanceMax: number
 ) => {
     const offset = page === 1 ? 0 : (page - 1) * limit;
     
-    let where = {};
+    let searchQuery = {};
+    let durationQuery = {};
+    let distanceQuery = {};
     
+    if(durationMax > 0) {
+        durationQuery = {
+            duration: {
+                gte: minutesToSeconds(durationMin),
+                lte: minutesToSeconds(durationMax)
+            }
+        }
+    }
+
+    if(distanceMax > 0) {
+        distanceQuery = {
+            covered_distance: {
+                gte: kilometersToMeters(distanceMin),
+                lte: kilometersToMeters(distanceMax)
+            }
+        }
+    }
+
     if (search) {
-        where = {
+        searchQuery = {
             OR: [
                 {
                     month: {
@@ -40,7 +64,13 @@ export const getAllJourneys = async (
         } 
     }
 
-    console.log(page, limit, orderBy, orderDir, search);
+    const where = {
+        ...searchQuery,
+        ...durationQuery,
+        ...distanceQuery,
+    }
+
+    console.log(where);
 
     const journeys = await prisma.journey.findMany({
         take: limit,
