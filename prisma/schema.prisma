@@ -6,30 +6,34 @@ generator client {
 }
 
 datasource db {
-  provider          = "postgresql"
-  url               = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Station {
-  id       Int    @id @default(autoincrement())
-  name     String
-  address  String
-  city     String
-  operator String
-  capacity Int
-  lon      Float
-  lat      Float
+  id                Int       @id @default(autoincrement())
+  name              String
+  address           String
+  city              String
+  operator          String
+  capacity          Int
+  lon               Float
+  lat               Float
+  departure_journey Journey[] @relation("departure")
+  return_journey    Journey[] @relation("return")
 }
 
 model Journey {
-  departure_time       DateTime
-  return_time          DateTime
-  departure_station    String
-  departure_station_id Int
-  return_station       String
-  return_station_id    Int
-  duration             Float
-  covered_distance     Float
-  month                String
-  id                   Int      @id @default(autoincrement())
+  departure_time            DateTime
+  return_time               DateTime
+  departure_station         String
+  departure_station_id      Int
+  departure_station_details Station?  @relation(name: "departure", fields: [departure_station_id], references: [id])
+  return_station            String
+  return_station_id         Int
+  return_station_details    Station?  @relation(name: "return", fields: [return_station_id], references: [id])
+  duration                  Float
+  covered_distance          Float
+  month                     String
+  id                        Int      @id @default(autoincrement())
 }
