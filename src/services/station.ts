@@ -33,7 +33,7 @@ export const getStationById = async (id: number, month: String | null) => {
     if(month) {
         monthQuery = {
             month: {
-                contains: month,
+                equals: month,
                 mode: "insensitive"
             }
         }
