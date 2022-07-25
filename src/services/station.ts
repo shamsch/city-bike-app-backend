@@ -1,6 +1,7 @@
 import {PrismaClient} from '@prisma/client';
 import { count } from 'console';
 import { metersToKilometers } from '../utils/convertUnit';
+import { getStaticMapUrl } from '../utils/staticMapUrl';
 
 const prisma = new PrismaClient();
 
@@ -35,6 +36,8 @@ export const getStationById = async (id: number) => {
             id: true, 
             name: true,
             address: true,
+            lat: true,
+            lon: true, 
             departure_journey: {
                 select: {
                     covered_distance: true,
@@ -54,7 +57,9 @@ export const getStationById = async (id: number) => {
 
     if (!station) {
         return null;
-    }
+    }   
+
+    const staticMapUrl = getStaticMapUrl(station.lat, station.lon);
 
     const totalDepartureJourneys = station?.departure_journey?.length || 0;
     const totalReturnJourneys = station?.return_journey?.length || 0;
@@ -96,5 +101,6 @@ export const getStationById = async (id: number) => {
         average_return_distance: metersToKilometers(averageReturnDistance),
         top_departure_station: topDepartureStationName,
         top_return_station: topReturnStationName,
+        static_map_url: staticMapUrl,
     }
 }
