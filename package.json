@@ -4,19 +4,28 @@
   "description": "city bike app nodejs backend for solita dev academy assignment",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.ts"
+    "start": "nodemon index.ts",
+    "test": "ts-mocha -p ./tsconfig.json ./src/__tests__/*.test.ts -w --watch-files ./src/**/*.ts"
   },
   "author": "shamsur",
   "license": "ISC",
   "dependencies": {
     "@prisma/client": "^4.1.0",
+    "cors": "^2.8.5",
     "csv-parser": "^3.0.0",
     "express": "^4.18.1",
     "nodemon": "^2.0.19"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.1",
+    "@types/cors": "^2.8.12",
+    "@types/mocha": "^9.1.1",
     "@types/node": "^18.0.6",
+    "chai": "^4.3.6",
+    "mocha": "^10.0.0",
     "prisma": "^4.1.0",
+    "supertest": "^6.2.4",
+    "ts-mocha": "^10.0.0",
     "ts-node": "^10.9.1",
     "typescript": "^4.7.4"
   }
