@@ -20,10 +20,22 @@ stationRouter.get(
     }
 );
 
-stationRouter.get("/:id", async (req: StationGetByIdRequest, res: StationGetByIdResponse) => {
-    const id = Number(req.params.id);
-    const station = await getStationById(id);
-    res.json(station);
-});
+stationRouter.get(
+    "/:id",
+    async (req: StationGetByIdRequest, res: StationGetByIdResponse) => {
+        const id = Number(req.params.id);
+    
+        if (isNaN(id)) {
+            res.status(400).json({ error: "Invalid id" });
+        } else {
+            const station = await getStationById(id);
+            if (!station) {
+                res.status(404).json({ error: "Station not found" });
+            } else {
+                res.json(station);
+            }
+        }
+    }
+);
 
 export default stationRouter;

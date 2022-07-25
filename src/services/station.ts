@@ -52,6 +52,10 @@ export const getStationById = async (id: number) => {
         },
     });
 
+    if (!station) {
+        return null;
+    }
+
     const totalDepartureJourneys = station?.departure_journey?.length || 0;
     const totalReturnJourneys = station?.return_journey?.length || 0;
 
