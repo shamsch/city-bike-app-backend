@@ -27,10 +27,22 @@ export const getAllStations = async (page: number, limit: number, search: string
     return stations;
 }
 
-export const getStationById = async (id: number) => {
+export const getStationById = async (id: number, month: String | null) => {
+    
+    let monthQuery = {};
+    if(month) {
+        monthQuery = {
+            month: {
+                contains: month,
+                mode: "insensitive"
+            }
+        }
+    }
+
+        
     const station = await prisma.station.findUnique({
-        where: {
-            id, 
+        where:{
+            id,
         }, 
         select:{
             id: true, 
@@ -39,6 +51,9 @@ export const getStationById = async (id: number) => {
             lat: true,
             lon: true, 
             departure_journey: {
+                where: {
+                    ...monthQuery
+                },
                 select: {
                     covered_distance: true,
                     departure_station: true,
@@ -46,6 +61,9 @@ export const getStationById = async (id: number) => {
                 }
             }, 
             return_journey: {
+                where: {
+                    ...monthQuery
+                },
                 select: {
                     covered_distance: true,
                     departure_station: true,

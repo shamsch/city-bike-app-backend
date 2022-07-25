@@ -24,11 +24,12 @@ stationRouter.get(
     "/:id",
     async (req: StationGetByIdRequest, res: StationGetByIdResponse) => {
         const id = Number(req.params.id);
-    
+        const month = req.query.month? String(req.query.month) : null;
+
         if (isNaN(id)) {
             res.status(400).json({ error: "Invalid id" });
         } else {
-            const station = await getStationById(id);
+            const station = await getStationById(id, month);
             if (!station) {
                 res.status(404).json({ error: "Station not found" });
             } else {
