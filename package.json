@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.ts",
-    "test": "ts-mocha -p ./tsconfig.json ./src/__tests__/*.test.ts -w --watch-files ./src/**/*.ts"
+    "test": "ts-mocha -p ./tsconfig.json ./src/__tests__/*.test.ts -w --watch-files ./src/**/*.ts --timeout 100000"
   },
   "author": "shamsur",
   "license": "ISC",

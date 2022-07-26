@@ -4,7 +4,6 @@ import "mocha";
 import app from "../..";
 
 import request from "supertest";
-import { metersToKilometers } from "../utils/convertUnit";
 
 
 describe("Expect journey to", () => {
@@ -111,8 +110,8 @@ describe("Expect journey to", () => {
         expect(durationResponse.body).to.be.an("array");
 
         // duration is between the min and max
-        expect(durationResponse.body[0].duration).to.be.greaterThan(durationMin);
-        expect(durationResponse.body[0].duration).to.be.lessThan(durationMax);
+        expect(durationResponse.body[0].duration).to.be.greaterThanOrEqual(durationMin);
+        expect(durationResponse.body[0].duration).to.be.lessThanOrEqual(durationMax);
     }
     )
 
