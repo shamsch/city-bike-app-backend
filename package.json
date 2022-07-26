@@ -4,7 +4,8 @@
   "description": "city bike app nodejs backend for solita dev academy assignment",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.ts",
+    "start": "node index.js",
+    "dev": "nodemon index.ts",
     "test": "ts-mocha -p ./tsconfig.json ./src/__tests__/*.test.ts -w --watch-files ./src/**/*.ts"
   },
   "author": "shamsur",
