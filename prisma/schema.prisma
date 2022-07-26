@@ -7,15 +7,13 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("TEST_DB")
+  url      = env("DATABASE_URL")
 }
 
 model Station {
   id                Int       @id @default(autoincrement())
   name              String
   address           String
-  city              String
-  operator          String
   capacity          Int
   lon               Float
   lat               Float
