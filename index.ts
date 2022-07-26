@@ -11,9 +11,9 @@ app.use(express.json());
 app.use('/api/journey', journeyRouter)
 app.use('/api/station', stationRouter)
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4000;
 
-app.listen(PORT, () => console.log('Server started on port 4000'));
+app.listen(PORT, () => console.log('Server started on port ' + PORT));
 
 // test issue
 export default app;
