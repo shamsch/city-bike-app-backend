@@ -3,7 +3,9 @@ import "mocha";
 
 import app from "../..";
 
-const request = require("supertest");
+import request from "supertest";
+import { metersToKilometers } from "../utils/convertUnit";
+
 
 describe("Expect journey to", () => {
     it("return 10 journey by default", async () => {
@@ -73,6 +75,61 @@ describe("Expect journey to", () => {
         expect(coveredDistanceTestResponse.body[0].covered_distance).to.be.lessThan(coveredDistanceTestResponse.body[1].covered_distance);
     })
 
-    
+    it("have search in month, return and departure station", async () => {
+        const searchTerm = "mAy";
+        const searchResponse = await request(app).get(`/api/journey?search=${searchTerm}`);
+
+        expect(searchResponse.status).to.equal(200);
+
+        expect(searchResponse.body).to.be.an("array");
+
+        // either be an empty array or have at least one element
+        if (searchResponse.body.length !== 0) {
+            // search through all the keys of the first element
+            for (let key in searchResponse.body[0]) {
+                // if the key is a string and the value of the first element contains the search term
+                if (typeof searchResponse.body[0][key] === "string" && searchResponse.body[0][key].toLowerCase().includes(searchTerm.toLowerCase())) {
+                    // then we have a match
+                    expect(true).to.equal(true);
+                    return;
+                }
+            }
+            // if we get here, then we didn't find a match
+            expect(true).to.equal(false);
+        }
+    }
+    )
+
+    it("have duration min and max filter", async () => {
+        //unit is minutes
+        const durationMin = 10;
+        const durationMax = 20;
+        const durationResponse = await request(app).get(`/api/journey?durationMin=${durationMin}&durationMax=${durationMax}`);
+
+        expect(durationResponse.status).to.equal(200);
+
+        expect(durationResponse.body).to.be.an("array");
+
+        // duration is between the min and max
+        expect(durationResponse.body[0].duration).to.be.greaterThan(durationMin);
+        expect(durationResponse.body[0].duration).to.be.lessThan(durationMax);
+    }
+    )
+
+    it("have covered distance min and max filter", async () => {
+        // unit is km
+        const coveredDistanceMin = 0.1;
+        const coveredDistanceMax = 1.0;
+        const coveredDistanceResponse = await request(app).get(`/api/journey?distanceMin=${coveredDistanceMin}&distanceMax=${coveredDistanceMax}`);
+
+        expect(coveredDistanceResponse.status).to.equal(200);
+
+        expect(coveredDistanceResponse.body).to.be.an("array");
+        if (coveredDistanceResponse.body.length !== 0) {
+            expect(coveredDistanceResponse.body[0].covered_distance).to.be.greaterThan(coveredDistanceMin);
+            expect(coveredDistanceResponse.body[0].covered_distance).to.be.lessThan(coveredDistanceMax);
+        }
+    }
+    )
 }
 )

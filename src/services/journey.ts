@@ -70,8 +70,6 @@ export const getAllJourneys = async (
         ...distanceQuery,
     }
 
-    console.log(where);
-
     const journeys = await prisma.journey.findMany({
         take: limit,
         skip: offset,
