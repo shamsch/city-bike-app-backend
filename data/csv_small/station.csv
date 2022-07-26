@@ -1,6 +1,0 @@
-id,name,address,city,operator,capacity,lon,lat
-1,Dhaka,Dhaka 1,DHK,BD,10,24.840319,60.16582
-2,Sylhet,Sylhet 2,SYL,BD,28,24.827467,60.171524
-3,Kolkata,Kolkata 5,KKT,IN,16,24.805758,60.168266
-4,CTG,CTG 3,CTG,BD,16,24.796136,60.168143
-5,Mumbai,Mumbai 1,MBI,IN,16,24.796136,60.168143
