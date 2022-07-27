@@ -2,9 +2,10 @@
   "name": "city-bike-app-backend",
   "version": "1.0.0",
   "description": "city bike app nodejs backend for solita dev academy assignment",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "start": "node index.js",
+    "start": "node dist/index.js",
+    "postinstall": "tsc",
     "dev": "nodemon index.ts",
     "test": "ts-mocha -p ./tsconfig.json ./src/__tests__/*.test.ts -w --watch-files ./src/**/*.ts --timeout 100000"
   },
