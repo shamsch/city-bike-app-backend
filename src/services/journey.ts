@@ -1,6 +1,11 @@
 import { PrismaClient } from "@prisma/client";
 import { orderByJourney, orderDir } from "../types";
-import { metersToKilometers, secondsToMinutes, kilometersToMeters, minutesToSeconds } from "../utils/convertUnit";
+import {
+    metersToKilometers,
+    secondsToMinutes,
+    kilometersToMeters,
+    minutesToSeconds,
+} from "../utils/convertUnit";
 
 const prisma = new PrismaClient();
 
@@ -16,27 +21,27 @@ export const getAllJourneys = async (
     distanceMax: number
 ) => {
     const offset = page === 1 ? 0 : (page - 1) * limit;
-    
+
     let searchQuery = {};
     let durationQuery = {};
     let distanceQuery = {};
-    
-    if(durationMax > 0) {
+
+    if (durationMax > 0) {
         durationQuery = {
             duration: {
                 gte: minutesToSeconds(durationMin),
-                lte: minutesToSeconds(durationMax)
-            }
-        }
+                lte: minutesToSeconds(durationMax),
+            },
+        };
     }
 
-    if(distanceMax > 0) {
+    if (distanceMax > 0) {
         distanceQuery = {
             covered_distance: {
                 gte: kilometersToMeters(distanceMin),
-                lte: kilometersToMeters(distanceMax)
-            }
-        }
+                lte: kilometersToMeters(distanceMax),
+            },
+        };
     }
 
     if (search) {
@@ -45,30 +50,30 @@ export const getAllJourneys = async (
                 {
                     month: {
                         contains: search,
-                        mode: "insensitive"
+                        mode: "insensitive",
                     },
                 },
                 {
                     departure_station: {
                         contains: search,
-                        mode: "insensitive"
+                        mode: "insensitive",
                     },
                 },
                 {
                     return_station: {
                         contains: search,
-                        mode: "insensitive"
+                        mode: "insensitive",
                     },
                 },
             ],
-        } 
+        };
     }
 
     const where = {
         ...searchQuery,
         ...durationQuery,
         ...distanceQuery,
-    }
+    };
 
     const journeys = await prisma.journey.findMany({
         take: limit,
@@ -76,7 +81,7 @@ export const getAllJourneys = async (
         orderBy: {
             [orderBy]: orderDir,
         },
-        where, 
+        where,
     });
 
     const convertedJourney = journeys.map((journey) => {
@@ -86,5 +91,12 @@ export const getAllJourneys = async (
             covered_distance: metersToKilometers(journey.covered_distance),
         };
     });
-    return convertedJourney;
+
+    const totalJourney = await prisma.journey.count();
+    const totalPages = Math.ceil(totalJourney / limit);
+
+    return {
+        journeys: convertedJourney,
+        total_pages: totalPages,
+    };
 };

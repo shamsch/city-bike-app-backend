@@ -24,7 +24,14 @@ export const getAllStations = async (page: number, limit: number, search: string
         skip: offset, 
         where
     });
-    return stations;
+
+    const totalStations = await prisma.station.count();
+    const totalPages = Math.ceil(totalStations / limit);
+
+    return {
+        stations,
+        total_pages: totalPages
+    };
 }
 
 export const getStationById = async (id: number, month: String | null) => {
