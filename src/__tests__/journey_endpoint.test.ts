@@ -12,9 +12,9 @@ describe("Expect journey to", () => {
 
         expect(response.status).to.equal(200);
 
-        expect(response.body).to.be.an("array");
+        expect(response.body.journeys).to.be.an("array");
 
-        expect(response.body).to.have.lengthOf(10);
+        expect(response.body.journeys).to.have.lengthOf(10);
     }) 
 
     it("return journey with id, departure_station, return_station, covered_distance etc.", async () => {
@@ -22,7 +22,7 @@ describe("Expect journey to", () => {
 
         expect(response.status).to.equal(200);
 
-        expect(response.body[0]).to.have.all.keys(["id", "departure_station", "return_station", "departure_time", "return_time", "departure_station_id", "return_station_id", "covered_distance",  "duration", "id", ]);
+        expect(response.body.journeys[0]).to.have.all.keys(["id", "departure_station", "return_station", "departure_time", "return_time", "departure_station_id", "return_station_id", "covered_distance",  "duration", "id", ]);
     }
     )
 
@@ -31,22 +31,22 @@ describe("Expect journey to", () => {
 
         expect(firstPage.status).to.equal(200);
 
-        expect(firstPage.body).to.be.an("array");
+        expect(firstPage.body.journeys).to.be.an("array");
 
-        expect(firstPage.body).to.have.lengthOf(5);
+        expect(firstPage.body.journeys).to.have.lengthOf(5);
 
         const secondPage = await request(app).get("/api/journey?page=2&limit=5");
 
         expect(secondPage.status).to.equal(200);
 
-        expect(secondPage.body).to.be.an("array");
+        expect(secondPage.body.journeys).to.be.an("array");
 
-        expect(secondPage.body).to.have.lengthOf(5);
+        expect(secondPage.body.journeys).to.have.lengthOf(5);
 
-        expect(firstPage.body).to.not.equal(secondPage.body);
+        expect(firstPage.body.journeys).to.not.equal(secondPage.body);
 
         // the second page starts from where the first page ends in terms of id as the id is SERIAL
-        expect(firstPage.body[4].id).to.equal(secondPage.body[0].id+1);
+        expect(firstPage.body.journeys[4].id).to.equal(secondPage.body.journeys[0].id+1);
     }
     )
 
@@ -55,23 +55,23 @@ describe("Expect journey to", () => {
 
         expect(idTestResponse.status).to.equal(200);
 
-        expect(idTestResponse.body).to.be.an("array");
+        expect(idTestResponse.body.journeys).to.be.an("array");
 
-        expect(idTestResponse.body).to.have.lengthOf(8);
+        expect(idTestResponse.body.journeys).to.have.lengthOf(8);
 
         // id is descending
-        expect(idTestResponse.body[0].id).to.be.greaterThan(idTestResponse.body[1].id);
+        expect(idTestResponse.body.journeys[0].id).to.be.greaterThanOrEqual(idTestResponse.body.journeys[1].id);
 
         const coveredDistanceTestResponse = await request(app).get("/api/journey?orderBy=covered_distance&orderDir=asc");
 
         expect(coveredDistanceTestResponse.status).to.equal(200);
 
-        expect(coveredDistanceTestResponse.body).to.be.an("array");
+        expect(coveredDistanceTestResponse.body.journeys).to.be.an("array");
 
-        expect(coveredDistanceTestResponse.body).to.have.lengthOf(10);
+        expect(coveredDistanceTestResponse.body.journeys).to.have.lengthOf(10);
 
         // covered_distance is ascending
-        expect(coveredDistanceTestResponse.body[0].covered_distance).to.be.lessThan(coveredDistanceTestResponse.body[1].covered_distance);
+        expect(coveredDistanceTestResponse.body.journeys[0].covered_distance).to.be.lessThanOrEqual(coveredDistanceTestResponse.body.journeys[1].covered_distance);
     })
 
     it("have search in month, return and departure station", async () => {
@@ -80,14 +80,14 @@ describe("Expect journey to", () => {
 
         expect(searchResponse.status).to.equal(200);
 
-        expect(searchResponse.body).to.be.an("array");
+        expect(searchResponse.body.journeys).to.be.an("array");
 
         // either be an empty array or have at least one element
         if (searchResponse.body.length !== 0) {
             // search through all the keys of the first element
-            for (let key in searchResponse.body[0]) {
+            for (let key in searchResponse.body.journeys[0]) {
                 // if the key is a string and the value of the first element contains the search term
-                if (typeof searchResponse.body[0][key] === "string" && searchResponse.body[0][key].toLowerCase().includes(searchTerm.toLowerCase())) {
+                if (typeof searchResponse.body.journeys[0][key] === "string" && searchResponse.body.journeys[0][key].toLowerCase().includes(searchTerm.toLowerCase())) {
                     // then we have a match
                     expect(true).to.equal(true);
                     return;
@@ -107,11 +107,11 @@ describe("Expect journey to", () => {
 
         expect(durationResponse.status).to.equal(200);
 
-        expect(durationResponse.body).to.be.an("array");
+        expect(durationResponse.body.journeys).to.be.an("array");
 
         // duration is between the min and max
-        expect(durationResponse.body[0].duration).to.be.greaterThanOrEqual(durationMin);
-        expect(durationResponse.body[0].duration).to.be.lessThanOrEqual(durationMax);
+        expect(durationResponse.body.journeys[0].duration).to.be.greaterThanOrEqual(durationMin);
+        expect(durationResponse.body.journeys[0].duration).to.be.lessThanOrEqual(durationMax);
     }
     )
 
@@ -123,10 +123,10 @@ describe("Expect journey to", () => {
 
         expect(coveredDistanceResponse.status).to.equal(200);
 
-        expect(coveredDistanceResponse.body).to.be.an("array");
-        if (coveredDistanceResponse.body.length !== 0) {
-            expect(coveredDistanceResponse.body[0].covered_distance).to.be.greaterThan(coveredDistanceMin);
-            expect(coveredDistanceResponse.body[0].covered_distance).to.be.lessThan(coveredDistanceMax);
+        expect(coveredDistanceResponse.body.journeys).to.be.an("array");
+        if (coveredDistanceResponse.body.journeys.length !== 0) {
+            expect(coveredDistanceResponse.body.journeys[0].covered_distance).to.be.greaterThanOrEqual(coveredDistanceMin);
+            expect(coveredDistanceResponse.body.journeys[0].covered_distance).to.be.lessThanOrEqual(coveredDistanceMax);
         }
     }
     )

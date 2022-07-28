@@ -9,9 +9,9 @@ describe("Expect station to", () => {
 
         expect(response.status).to.equal(200);
 
-        expect(response.body).to.be.an("array");
+        expect(response.body.stations).to.be.an("array");
 
-        expect(response.body).to.have.lengthOf(10);
+        expect(response.body.stations).to.have.lengthOf(10);
     }
     )
 }
