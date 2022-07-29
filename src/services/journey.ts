@@ -92,7 +92,9 @@ export const getAllJourneys = async (
         };
     });
 
-    const totalJourney = await prisma.journey.count();
+    const totalJourney = await prisma.journey.count({
+        where,
+    });
     const totalPages = Math.ceil(totalJourney / limit);
 
     return {

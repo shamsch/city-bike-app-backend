@@ -25,7 +25,9 @@ export const getAllStations = async (page: number, limit: number, search: string
         where
     });
 
-    const totalStations = await prisma.station.count();
+    const totalStations = await prisma.station.count({
+        where
+    });
     const totalPages = Math.ceil(totalStations / limit);
 
     return {
