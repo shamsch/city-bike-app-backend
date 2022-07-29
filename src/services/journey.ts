@@ -20,7 +20,7 @@ export const getAllJourneys = async (
     distanceMin: number,
     distanceMax: number
 ) => {
-    const offset = page === 1 ? 0 : (page - 1) * limit;
+    const cursorId = page === 1 ? 1 : ((page-1) * limit)+1;
 
     let searchQuery = {};
     let durationQuery = {};
@@ -77,7 +77,9 @@ export const getAllJourneys = async (
 
     const journeys = await prisma.journey.findMany({
         take: limit,
-        skip: offset,
+        cursor: {
+            id: cursorId,
+        },
         orderBy: {
             [orderBy]: orderDir,
         },

@@ -36,6 +36,6 @@ export const validateOrderDir = (requestOrderDir: string): orderDir => {
         case 'desc':
             return 'desc';
         default:
-            return 'desc';
+            return 'asc';
     }
 }
