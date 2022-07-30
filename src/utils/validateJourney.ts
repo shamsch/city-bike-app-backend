@@ -31,9 +31,9 @@ export const validateOrderBy = (requestOrderBy: string): orderByJourney => {
 
 export const validateOrderDir = (requestOrderDir: string): orderDir => {
     switch (requestOrderDir) {
-        case 'asc':
+        case 'ASC':
             return 'asc';
-        case 'desc':
+        case 'DESC':
             return 'desc';
         default:
             return 'asc';
