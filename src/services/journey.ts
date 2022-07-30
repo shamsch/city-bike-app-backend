@@ -78,14 +78,11 @@ export const getAllJourneys = async (
 
     let journeys:Journey[] = []; 
 
-    if (orderBy === "id") {
+    if (orderBy === "id" && orderDir === "asc") {
          journeys = await prisma.journey.findMany({
             take: limit,
             cursor: {
                 id: cursorId,
-            },
-            orderBy: {
-                [orderBy]: orderDir,
             },
             where,
         });
