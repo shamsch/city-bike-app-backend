@@ -7,9 +7,7 @@ import {
     minutesToSeconds,
 } from "../utils/convertUnit";
 
-const prisma = new PrismaClient({
-    log: ["query", "info", "warn", "error"],
-});
+const prisma = new PrismaClient();
 
 export const getAllJourneys = async (
     page: number,
