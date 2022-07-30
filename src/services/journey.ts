@@ -1,4 +1,4 @@
-import { PrismaClient } from "@prisma/client";
+import { Journey, PrismaClient } from "@prisma/client";
 import { orderByJourney, orderDir } from "../types";
 import {
     metersToKilometers,
@@ -7,7 +7,9 @@ import {
     minutesToSeconds,
 } from "../utils/convertUnit";
 
-const prisma = new PrismaClient();
+const prisma = new PrismaClient({
+    log: ["query", "info", "warn", "error"],
+});
 
 export const getAllJourneys = async (
     page: number,
@@ -20,7 +22,8 @@ export const getAllJourneys = async (
     distanceMin: number,
     distanceMax: number
 ) => {
-    const cursorId = page === 1 ? 1 : ((page-1) * limit)+1;
+    const cursorId = page === 1 ? 1 : (page - 1) * limit + 1;
+    const offset = (page - 1) * limit;
 
     let searchQuery = {};
     let durationQuery = {};
@@ -75,16 +78,30 @@ export const getAllJourneys = async (
         ...distanceQuery,
     };
 
-    const journeys = await prisma.journey.findMany({
-        take: limit,
-        cursor: {
-            id: cursorId,
-        },
-        orderBy: {
-            [orderBy]: orderDir,
-        },
-        where,
-    });
+    let journeys:Journey[] = []; 
+
+    if (orderBy === "id") {
+         journeys = await prisma.journey.findMany({
+            take: limit,
+            cursor: {
+                id: cursorId,
+            },
+            orderBy: {
+                [orderBy]: orderDir,
+            },
+            where,
+        });
+    }
+    else {
+        journeys = await prisma.journey.findMany({
+            take: limit,
+            skip: offset,
+            orderBy: {
+                [orderBy]: orderDir,
+            },
+            where,
+        });
+    }
 
     const convertedJourney = journeys.map((journey) => {
         return {
