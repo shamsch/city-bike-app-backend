@@ -5,7 +5,7 @@ import { getStaticMapUrl } from '../utils/staticMapUrl';
 
 const prisma = new PrismaClient();
 
-export const getAllStations = async (page: number, limit: number, search: string) => {
+export const getAllStations = async (page: number, limit: number, search: string|undefined) => {
     const offset = (page - 1) * limit;
 
     let where = {};
@@ -36,7 +36,7 @@ export const getAllStations = async (page: number, limit: number, search: string
     };
 }
 
-export const getStationById = async (id: number, month: String | null) => {
+export const getStationById = async (id: number, month: String | undefined) => {
     
     let monthQuery = {};
     if(month) {
@@ -130,4 +130,18 @@ export const getStationById = async (id: number, month: String | null) => {
         top_return_station: topReturnStationName,
         static_map_url: staticMapUrl,
     }
+}
+
+export const addStation = async (name: string, address: string, lat: number, lon: number, capacity: number) => {
+    const station = await prisma.station.create({
+        data: {
+            name,
+            address,
+            lat,
+            lon,
+            capacity
+        }
+    });
+
+    return station;
 }
