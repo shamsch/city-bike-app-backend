@@ -16,19 +16,46 @@ export enum orderByJourney {
 
 export type orderDir = "asc" | "desc";
 
-export type JourneyGetRequest = Request & {};
-export type JourneyGetResponse = Response & {
-    json(): Promise<Journey[]>;
-};
-export type StationGetRequest = Request & {};
-export type StationGetResponse = Response & {
-    json(): Promise<Station[]>;
-};
-export type StationGetByIdRequest = Request & {
-    params: {
-        id: string;
+export interface JourneyGetRequest extends Request {
+    query: {
+        limit?: number;
+        page?: number;
+        orderBy?: string;
+        orderDir?: string;
+        search?: string;
+        durationMin?: number;
+        durationMax?: number;
+        distanceMin?: number;
+        distanceMax?: number;
     };
-};
-export type StationGetByIdResponse = Response & {
-    json(): Promise<Station>;
-};
+}
+export type JourneyGetResponse = Response<Journey[]>;
+export interface StationGetRequest extends Request {
+    query:{
+        limit?: number;
+        page?: number;
+        search?: string;
+    }
+}
+export type StationGetResponse = Response<Station[]>;
+export interface StationGetByIdRequest extends Request {
+    params: {
+        id: number;
+    },
+    query: {
+        month?: string;
+    };
+}
+export type StationGetByIdResponse = Response<Station>;
+export interface StationPostRequest extends Request {
+    body: {
+        name: string;
+        address: string;
+        lat: number;
+        lon: number;
+        capacity: number;
+    };
+}
+
+export type StationPostResponse = Response<Station>;
+

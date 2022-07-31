@@ -1,6 +1,6 @@
 import { orderByJourney, orderDir } from "../types";
 
-export const validateOrderBy = (requestOrderBy: string): orderByJourney => {
+export const validateOrderBy = (requestOrderBy: string| undefined): orderByJourney => {
     switch (requestOrderBy) {
         case 'id':
             return orderByJourney.id;
@@ -29,7 +29,7 @@ export const validateOrderBy = (requestOrderBy: string): orderByJourney => {
 
 
 
-export const validateOrderDir = (requestOrderDir: string): orderDir => {
+export const validateOrderDir = (requestOrderDir: string| undefined): orderDir => {
     switch (requestOrderDir) {
         case 'ASC':
             return 'asc';
