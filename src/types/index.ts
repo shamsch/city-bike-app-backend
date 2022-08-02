@@ -59,3 +59,15 @@ export interface StationPostRequest extends Request {
 
 export type StationPostResponse = Response<Station>;
 
+export interface JourneyPostRequest extends Request {
+    body: {
+        departure_station: number;
+        return_station: number;
+        departure_time: Date;
+        return_time: Date;
+        covered_distance: number;
+        month: string;
+    };
+}
+
+export type JourneyPostResponse = Response<Journey>;

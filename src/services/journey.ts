@@ -116,3 +116,51 @@ export const getAllJourneys = async (
         total_pages: totalPages,
     };
 };
+
+export const addJourney = async (
+    month: string,
+    departure_station: number, 
+    return_station: number,
+    duration: number,
+    covered_distance: number,
+    departure_time: Date, 
+    return_time: Date
+) => {
+    // find departure station and return station in database
+    const departureStation = await prisma.station.findUnique({
+        where: {
+            id: departure_station,
+        },
+    });
+    const returnStation = await prisma.station.findUnique({
+        where: {
+            id: return_station,
+        },
+    });
+
+    if (!departureStation || !returnStation) {
+        return false; 
+    }
+
+    const journey = await prisma.journey.create({
+        data: {
+            departure_station_id: departureStation.id,
+            return_station_id: returnStation.id,
+            departure_station: departureStation.name, 
+            return_station: returnStation.name,
+            departure_time: new Date(departure_time),
+            return_time: new Date(return_time),
+            duration: duration, // already in seconds because of the conversion routes/journey.ts
+            covered_distance: kilometersToMeters(covered_distance),
+            month,
+        },
+    });
+
+    if (!journey) {
+        return false;
+    }
+    else {
+        return journey; 
+    }
+}
+
