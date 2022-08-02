@@ -133,13 +133,16 @@ export const getStationById = async (id: number, month: String | undefined) => {
 }
 
 export const addStation = async (name: string, address: string, lat: number, lon: number, capacity: number) => {
+    const latitude = Number(lat);
+    const longitude = Number(lon);
+    const capacityNumber = Number(capacity);
     const station = await prisma.station.create({
         data: {
             name,
             address,
-            lat,
-            lon,
-            capacity
+            lat: latitude,
+            lon: longitude,
+            capacity: capacityNumber,
         }
     });
 
