@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { body, validationResult } from "express-validator";
-import { addStation, getAllStations, getStationById } from "../services/station";
+import { addStation, getAllStations, getStationById, getStationOptions } from "../services/station";
 import {
     StationGetRequest,
     StationGetResponse,
@@ -21,6 +21,12 @@ stationRouter.get(
         const stations = await getAllStations(page, limit, search);
         res.json(stations);
     }
+);
+
+stationRouter.get("/stationOptions", async (req, res) => {
+    const stations = await getStationOptions();
+    res.json(stations);
+}
 );
 
 stationRouter.get(

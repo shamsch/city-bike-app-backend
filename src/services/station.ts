@@ -148,3 +148,14 @@ export const addStation = async (name: string, address: string, lat: number, lon
 
     return station;
 }
+
+export const getStationOptions = async () => {
+    const stations = await prisma.station.findMany({
+        select: {
+            id: true,
+            name: true,
+        }
+    });
+
+    return stations;
+}
