@@ -65,8 +65,6 @@ journeyRouter.post(
             departure_time,
             return_time,
         } = req.body;
-        
-        console.log(duration);
 
         const journey = await addJourney(
             month,

@@ -126,6 +126,7 @@ export const addJourney = async (
     departure_time: Date, 
     return_time: Date
 ) => {
+    console.log(departure_station, return_station, );
     // find departure station and return station in database
     const departureStation = await prisma.station.findUnique({
         where: {
