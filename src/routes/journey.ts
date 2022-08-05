@@ -77,7 +77,7 @@ journeyRouter.post(
 				month,
 				Number(departure_station),
 				Number(return_station),
-				Number(duration),
+				Math.abs(Number(duration)),
 				Number(covered_distance),
 				new Date(departure_time),
 				new Date(return_time)
