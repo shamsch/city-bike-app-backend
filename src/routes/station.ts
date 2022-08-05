@@ -60,7 +60,7 @@ stationRouter.post(
 	body("address").isString().isLength({ min: 1 }),
 	body("lat").isFloat(),
 	body("lon").isFloat(),
-	body("capacity").isInt(),
+	body("capacity").isInt({ gt: 0 }),
 	async (req: StationPostRequest, res: StationPostResponse) => {
 		const errors = validationResult(req);
 		if (!errors.isEmpty()) {
