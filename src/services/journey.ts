@@ -161,3 +161,20 @@ export const addJourney = async (
 		return journey;
 	}
 };
+
+export const getMaxValues = async () => {
+	const maxDuration = await prisma.journey.aggregate({
+		_max: {
+			duration: true,
+		},
+	});
+	const maxDistance = await prisma.journey.aggregate({
+		_max: {
+			covered_distance: true,
+		},
+	});
+	return {
+		maxDuration: secondsToMinutes(maxDuration._max.duration || 0),
+		maxDistance: metersToKilometers(maxDistance._max.covered_distance || 0),
+	};
+};
