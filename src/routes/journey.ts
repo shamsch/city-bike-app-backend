@@ -1,7 +1,7 @@
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 import { body, validationResult } from "express-validator";
 import { verifyPostRequestPass } from "../middleware/verifyPostRequestPass";
-import { addJourney, getAllJourneys } from "../services/journey";
+import { addJourney, getAllJourneys, getMaxValues } from "../services/journey";
 import {
 	JourneyGetRequest,
 	JourneyGetResponse,
@@ -91,5 +91,10 @@ journeyRouter.post(
 		}
 	}
 );
+
+journeyRouter.get("/maximum", async (req: Request, res: Response) => {
+	const values = await getMaxValues();
+	res.json(values);
+});
 
 export default journeyRouter;
