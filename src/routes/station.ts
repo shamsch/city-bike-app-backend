@@ -1,5 +1,6 @@
 import { Router } from "express";
 import { body, validationResult } from "express-validator";
+import { verifyPostRequestPass } from "../middleware/verifyPostRequestPass";
 import {
 	addStation,
 	getAllStations,
@@ -54,6 +55,7 @@ stationRouter.get(
 
 stationRouter.post(
 	"/add",
+	verifyPostRequestPass,
 	body("name").isString().isLength({ min: 1 }),
 	body("address").isString().isLength({ min: 1 }),
 	body("lat").isFloat(),
