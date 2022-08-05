@@ -46,7 +46,7 @@ journeyRouter.post(
 	body("month").isString(),
 	body("departure_station").isNumeric(),
 	body("return_station").isNumeric(),
-	body("covered_distance").isNumeric(),
+	body("covered_distance").isFloat({ gt: 0 }),
 	body("departure_time").isString(),
 	body("return_time").isString(),
 	async (req: JourneyPostRequest, res: JourneyGetResponse) => {
@@ -63,31 +63,31 @@ journeyRouter.post(
 
 		if (!error.isEmpty() || dateError) {
 			res.status(400).json({ error: "Invalid data received" });
-		}
-
-		const {
-			month,
-			departure_station,
-			return_station,
-			covered_distance,
-			departure_time,
-			return_time,
-		} = req.body;
-
-		const journey = await addJourney(
-			month,
-			Number(departure_station),
-			Number(return_station),
-			Number(duration),
-			Number(covered_distance),
-			new Date(departure_time),
-			new Date(return_time)
-		);
-
-		if (journey) {
-			res.json(journey);
 		} else {
-			res.status("400").json({ error: "Journey could not be added" });
+			const {
+				month,
+				departure_station,
+				return_station,
+				covered_distance,
+				departure_time,
+				return_time,
+			} = req.body;
+
+			const journey = await addJourney(
+				month,
+				Number(departure_station),
+				Number(return_station),
+				Number(duration),
+				Number(covered_distance),
+				new Date(departure_time),
+				new Date(return_time)
+			);
+
+			if (journey) {
+				res.json(journey);
+			} else {
+				res.status("400").json({ error: "Journey could not be added" });
+			}
 		}
 	}
 );
