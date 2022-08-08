@@ -6,7 +6,9 @@ The README.md file will be ready shortly (before 14th August 2022).
 
 The documentation for all endpoints, along with type of request, parameters, request body, request token, and return value descriptions, is available can be found down below.
 
-### API Endpoints
+### API Endpoints:
+
+#### Endpoint: /api/journey/
 
 - `GET /api/journey`: Returns a list of all journeys and total number of pages (which then helps paginationg on the client-side). In this format:
 
