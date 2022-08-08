@@ -2,6 +2,18 @@
 
 The README.md file will be ready shortly (before 14th August 2022).
 
+## TECHNOLOGIES USED
+
+TO BE ADDED LATER
+
+## DEVELOPMENT WORKFLOW
+
+TO BE ADDED LATER
+
+## TESTING
+
+TO BE ADDED LATER
+
 ## API DOCUMENTATION
 
 The documentation for all endpoints, along with type of request, parameters, request body, request token, and return value descriptions, is available can be found down below.
