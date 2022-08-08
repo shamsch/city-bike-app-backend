@@ -10,7 +10,7 @@ The documentation for all endpoints, along with type of request, parameters, req
 
 #### Endpoint: /api/journey/
 
-- `GET /api/journey`: Returns a list of all journeys and total number of pages (which then helps paginationg on the client-side). In this format:
+- `GET /api/journey`: Returns a list of all journeys and total number of pages (which then helps pagination on the client-side). In this format:
 
   ```json
   {
@@ -104,7 +104,7 @@ The documentation for all endpoints, along with type of request, parameters, req
 
 ### Endpoint: /api/station/
 
-- `GET /api/station`: Returns a list of all stations and total number of pages (which then helps paginationg on the client-side). In this format:
+- `GET /api/station`: Returns a list of all stations and total number of pages (which then helps pagination on the client-side). In this format:
 
   ```json
   {
