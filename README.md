@@ -75,6 +75,14 @@ The documentation for all endpoints, along with type of request, parameters, req
   }
   ```
 
+  Must be accompanied by a valid token in the headers. Request headers:
+
+  ```json
+  {
+  	"pass": "your-secret-password" // the password is secret, if you need it for testing purposes, ask the develooper
+  }
+  ```
+
   A sucessful response:
 
   ```json
@@ -160,6 +168,14 @@ The documentation for all endpoints, along with type of request, parameters, req
   	"capacity": 12, // must be a non-negative integer
   	"lon": 24.9565097715858, // can be any floating point number
   	"lat": 60.1609890692806 // can be any floating point number
+  }
+  ```
+
+  Must be accompanied by a valid token in the headers. Request headers:
+
+  ```json
+  {
+  	"pass": "your-secret-password" // the password is secret, if you need it for testing purposes, ask the develooper
   }
   ```
 
