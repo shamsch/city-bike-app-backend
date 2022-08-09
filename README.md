@@ -60,11 +60,11 @@ The documentation for all endpoints, along with type of request, parameters, req
 
   - `?page=2`: Specifies the page of journeys to be returned. Default value is `1`. In this example, the second page of journeys is returned. **Must be a non-negative integer**.
 
-  - `?orderDir=DESC`: Specifies the order direction of the journeys based on `orderBy` value, which refers to colmns of journey. If `orderBy` is not provided, then it orders based on `id` of journeys. Default value is `ASC`. Must be either `ASC` or `DESC` referring to ascending or descending order. **Case sensitive**
+  - `?orderDir=DESC`: Specifies the order direction of the journeys based on `orderBy` value, which refers to columns of journey. If `orderBy` is not provided, then it orders based on `id` of journeys. Default value is `ASC`. Must be either `ASC` or `DESC` referring to ascending or descending order. **Case sensitive**
 
   - `?orderBy=return_time`: Specifies the column to order the journeys by. Default value is `id`. Acceptable values are `id`, `departure_time`, `return_time`, `departure_station`, `departure_station_id`, `return_station`, `return_station_id`, `duration`, `covered_distance`, `month`. If `orderBy` is not provided, then it orders based on `id` of journeys. If wrong value is provided, then it orders based on `id` of journeys. **Case sensitive**.
 
-  - `?search=July`: Searches jourey based on the valued provided against `month`, `departure_station`, and `return_station` columns. Default value is an empty string. Must be a string. **Case insesitive**.
+  - `?search=July`: Searches journey based on the valued provided against `month`, `departure_station`, and `return_station` columns. Default value is an empty string. Must be a string. **Case insensitive**.
 
   - `?durationMax=25.3`: Returns journeys with duration in minutes less than or equal to the specified value. By default, it is set to `0` which results in not applying the query. **Must be a non-negative number**.
 
@@ -91,11 +91,11 @@ The documentation for all endpoints, along with type of request, parameters, req
 
   ```json
   {
-  	"pass": "your-secret-password" // the password is secret, if you need it for testing purposes, ask the develooper
+  	"pass": "your-secret-password" // the password is secret, if you need it for testing purposes, ask the developer
   }
   ```
 
-  A sucessful response:
+  A successful response:
 
   ```json
   {
@@ -152,7 +152,7 @@ The documentation for all endpoints, along with type of request, parameters, req
 
   - `?limit=5`: Limits the number of stations to be returned to the specified value, in this case `5`. Default value is `10`. **Must be a non-negative integer**.
   - `?page=2`: Specifies the page of stations to be returned. Default value is `1`. In this example, the second page of stations is returned. **Must be a non-negative integer**.
-  - `?search=Laivasillankatu`: Searches station based on the valued provided against `name` columns of the stations. Default value is an empty string. Must be a string. **Case insesitive**.
+  - `?search=Laivasillankatu`: Searches station based on the valued provided against `name` columns of the stations. Default value is an empty string. Must be a string. **Case insensitive**.
 
 - `GET /api/station/stationOptions`: Returns a list of all stations with their name and id in the format:
 
@@ -187,11 +187,11 @@ The documentation for all endpoints, along with type of request, parameters, req
 
   ```json
   {
-  	"pass": "your-secret-password" // the password is secret, if you need it for testing purposes, ask the develooper
+  	"pass": "your-secret-password" // the password is secret, if you need it for testing purposes, ask the developer
   }
   ```
 
-  A sucessful response:
+  A successful response:
 
   ```json
   {
@@ -238,4 +238,4 @@ The documentation for all endpoints, along with type of request, parameters, req
   ```
 
   - `?month=May`: Returns all the calculation results for the specified month. Default value is an empty string, so for all months of all years. Must be either `January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, or `December`. Month name must start with an uppercase letter and followed by lowercase letters. **Must be full English month name.**
-    HUOM! Here month referes to month of any year, so `May` is for May of 2020 and May of 2021 or any May month of any year for that matter.
+    HUOM! Here month refers to month of any year, so `May` is for May of 2020 and May of 2021 or any May month of any year for that matter.
