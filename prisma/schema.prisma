@@ -7,7 +7,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URL")	
+  url      = env("TEST_DB")
 }
 
 model Station {
@@ -26,10 +26,10 @@ model Journey {
   return_time               DateTime
   departure_station         String
   departure_station_id      Int
-  departure_station_details Station?  @relation(name: "departure", fields: [departure_station_id], references: [id])
+  departure_station_details Station? @relation(name: "departure", fields: [departure_station_id], references: [id])
   return_station            String
   return_station_id         Int
-  return_station_details    Station?  @relation(name: "return", fields: [return_station_id], references: [id])
+  return_station_details    Station? @relation(name: "return", fields: [return_station_id], references: [id])
   duration                  Float
   covered_distance          Float
   month                     String
