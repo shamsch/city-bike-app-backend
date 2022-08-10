@@ -54,8 +54,8 @@ journeyRouter.post(
 		const error = validationResult(req);
 		const dateError =
 			!validateMonth(req.body.month) ||
-			!validateDate(req.body.departure_time.toISOString()) ||
-			!validateDate(req.body.departure_time.toISOString());
+			!validateDate(String(req.body.departure_time)) ||
+			!validateDate(String(req.body.return_time));
 
 		const duration =
 			(new Date(req.body.return_time).getTime() -
