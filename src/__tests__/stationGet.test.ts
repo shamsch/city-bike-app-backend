@@ -60,6 +60,28 @@ describe("GET /api/station/:id", () => {
 
 		expect(response.status).to.equal(400);
 	});
+
+	it("when queried with invalid month returns all same as all month", async () => {
+		const fakeMonthResponse = await request(app).get(
+			"/api/station/1?month=abc"
+		);
+		const allMonthResponse = await request(app).get("/api/station/1");
+
+		expect(fakeMonthResponse.status).to.equal(200);
+		expect(allMonthResponse.status).to.equal(200);
+		expect(fakeMonthResponse.body).to.deep.equal(allMonthResponse.body);
+	});
+
+	it("when queried with valid month returns only that month", async () => {
+		const realMonthResponse = await request(app).get(
+			"/api/station/1?month=January"
+		);
+		const allMonthResponse = await request(app).get("/api/station/1");
+
+		expect(realMonthResponse.status).to.equal(200);
+		expect(allMonthResponse.status).to.equal(200);
+		expect(realMonthResponse.body).to.not.deep.equal(allMonthResponse.body);
+	});
 });
 
 describe("GET /api/station/stationOptions", () => {

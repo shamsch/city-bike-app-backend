@@ -237,5 +237,5 @@ The documentation for all endpoints, along with type of request, parameters, req
   }
   ```
 
-  - `?month=May`: Returns all the calculation results for the specified month. Default value is an empty string, so for all months of all years. Must be either `January`, `February`, `March`, `April`, `May`, `June`, `July`, `August`, `September`, `October`, `November`, or `December`. Month name must start with an uppercase letter and followed by lowercase letters. **Must be full English month name.**
+  - `?month=May`: Returns all the calculation results for the specified month. Default value is an empty string, which return for all months of the year. **Must be full English month name. All caps, capitalized or all lowercase.**
     HUOM! Here month refers to month of any year, so `May` is for May of 2020 and May of 2021 or any May month of any year for that matter.
