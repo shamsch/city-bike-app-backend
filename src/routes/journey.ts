@@ -8,6 +8,7 @@ import {
 	JourneyPostRequest,
 } from "../types";
 import { validateOrderBy, validateOrderDir } from "../utils/validateJourney";
+import { validateDate, validateMonth } from "../utils/validateMonthAndDate";
 
 const journeyRouter = Router();
 
@@ -52,9 +53,9 @@ journeyRouter.post(
 	async (req: JourneyPostRequest, res: JourneyGetResponse) => {
 		const error = validationResult(req);
 		const dateError =
-			new Date(req.body.month + "1").toString() === "Invalid Date" ||
-			new Date(req.body.return_time).toString() === "Invalid Date" ||
-			new Date(req.body.departure_time).toString() === "Invalid Date";
+			!validateMonth(req.body.month) ||
+			!validateDate(req.body.departure_time.toISOString()) ||
+			!validateDate(req.body.departure_time.toISOString());
 
 		const duration =
 			(new Date(req.body.return_time).getTime() -

@@ -15,6 +15,7 @@ import {
 	StationPostRequest,
 	StationPostResponse,
 } from "../types";
+import { validateMonth } from "../utils/validateMonthAndDate";
 
 const stationRouter = Router();
 
@@ -38,7 +39,11 @@ stationRouter.get(
 	"/:id",
 	async (req: StationGetByIdRequest, res: StationGetByIdResponse) => {
 		const id = Number(req.params.id);
-		const month = req.query.month ? String(req.query.month) : undefined;
+		const month = req.query.month
+			? validateMonth(req.query.month)
+				? req.query.month
+				: undefined
+			: "";
 
 		if (isNaN(id)) {
 			res.status(400).json({ error: "Invalid id" });
