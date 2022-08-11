@@ -43,9 +43,12 @@ with open(dir + "/raw/journey_july.csv", "wb") as file:
 
 
 # import the journey csv file
-journey_may = pd.read_csv(r"./csv/raw/journey_may.csv")
-journey_june = pd.read_csv(r"./csv/raw/journey_june.csv")
-journey_july = pd.read_csv(r"./csv/raw/journey_july.csv")
+journey_may = pd.read_csv(os.path.join(
+    os.getcwd(), dir, "raw", "journey_may.csv"))
+journey_june = pd.read_csv(os.path.join(
+    os.getcwd(), dir, "raw", "journey_june.csv"))
+journey_july = pd.read_csv(os.path.join(
+    os.getcwd(), dir, "raw", "journey_july.csv"))
 
 # add month column to the dataframe
 journey_may['month'] = 'May'
@@ -56,8 +59,7 @@ journey_july['month'] = 'July'
 journey_all = pd.concat([journey_may, journey_june, journey_july])
 
 # import the stations csv file
-stations = pd.read_csv(
-    r".\csv\raw\stations.csv")
+stations = pd.read_csv(os.path.join(os.getcwd(), dir, "raw", "stations.csv"))
 
 # getting rid of any journey that has a station that is not in the stations csv file
 
