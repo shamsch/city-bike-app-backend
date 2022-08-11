@@ -1,6 +1,6 @@
 version: '3.8'
 services:
-  - name: postgres
+  postgres:
     image: postgres:alpine
     ports:
       - '5432:5432'
@@ -11,12 +11,14 @@ services:
     volumes:
       - ./data/postgres:/var/lib/postgresql/data
     restart: always
-  - name: nodejs-backend
-    build: . 
+  nodejs-backend:
+    build: .
+    stdin_open: true
+    tty: true
     ports:
-      - '8080:8080'
+      - '4000:4000'
     restart: always
-    environment: 
+    environment:
       - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
     depends_on:
       - postgres

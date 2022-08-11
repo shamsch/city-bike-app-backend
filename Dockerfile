@@ -1,4 +1,4 @@
-FROM python:alpine as importing_csv
+FROM python:latest as importing_csv
 
 WORKDIR /app
 
@@ -8,7 +8,7 @@ RUN pip install -r requirements.txt
 
 COPY data/script/import_and_validate_csv.py /app
 
-CMD ["python", "import_and_validate_csv.py"]
+RUN python import_and_validate_csv.py
 
 FROM node:alpine as server 
 
@@ -20,6 +20,6 @@ RUN npm install
 
 COPY . /server
 
-COPY --from=importing_csv /app/csv /server/
+COPY --from=importing_csv /app/csv /server/csv
 
-CMD ["npm", "start:docker"]
+CMD ["npm", "run", "start:docker"]
