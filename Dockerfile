@@ -20,6 +20,6 @@ RUN npm install
 
 COPY . /server
 
-COPY --from=importing_csv /app/data /server/
+COPY --from=importing_csv /app/csv /server/
 
 CMD ["npm", "start"]
