@@ -22,4 +22,4 @@ COPY . /server
 
 COPY --from=importing_csv /app/csv /server/
 
-CMD ["npm", "start"]
+CMD ["npm", "start:docker"]
