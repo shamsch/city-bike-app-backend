@@ -80,8 +80,8 @@ The documentation for all endpoints, along with type of request, parameters, req
   {
   	"departure_time": "2021-05-31T23:57:25.000Z", // Date ISO format
   	"return_time": "2021-06-01T00:05:46.000Z",
-  	"departure_station_id": 94, // has to be a valid station ID that exists in stations table
-  	"return_station_id": 100,
+  	"departure_station": 94, // has to be a valid station ID that exists in stations table
+  	"return_station": 100,
   	"covered_distance": 0.5, // covered distance in kilometers. Must be a non-negative number.
   	"month": "May" // month in full English name (e.g. "February")
   }
