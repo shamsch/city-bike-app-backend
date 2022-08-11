@@ -29,17 +29,21 @@ export const seed = async () => {
 	fs.createReadStream(path.join(__dirname, "../csv/validated/journey_all.csv"))
 		.pipe(csv())
 		.on("data", async (data: any) => {
-			// console.log(
-			// 	data["departure_time"],
-			// 	data["return_time"],
-			// 	data["departure_station"],
-			// 	data["return_station"],
-			// 	Number(data["departure_station_id"]),
-			// 	Number(data["return_station_id"]),
-			// 	Number(data["covered_distance"]),
-			// 	Number(data["duration"]),
-			// 	String(data["month"])
-			// );
+			const departureStation = await prisma.station.findUnique({
+				where: {
+					id: Number(data["departure_station_id"]),
+				},
+			});
+			const returnStation = await prisma.station.findUnique({
+				where: {
+					id: Number(data["return_station_id"]),
+				},
+			});
+
+			if (!departureStation || !returnStation) {
+				return;
+			}
+
 			await prisma.journey.create({
 				data: {
 					covered_distance: Number(data["covered_distance"]),
@@ -53,6 +57,9 @@ export const seed = async () => {
 					return_station_id: Number(data["return_station_id"]),
 				},
 			});
+		})
+		.on("error", (err: any) => {
+			console.log(err);
 		});
 };
 
