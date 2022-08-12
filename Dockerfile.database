@@ -1,0 +1,19 @@
+FROM python:latest as importing_csv
+
+WORKDIR /app
+
+EXPOSE 5432
+
+COPY data/script/requirements.txt /app
+
+RUN pip install -r requirements.txt
+
+COPY data/script/import_and_validate_csv.py /app
+
+RUN python import_and_validate_csv.py
+
+FROM postgres:alpine as database
+
+WORKDIR /
+
+COPY --from=importing_csv /app/csv /csv

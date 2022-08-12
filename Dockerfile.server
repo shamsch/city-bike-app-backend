@@ -1,0 +1,15 @@
+FROM node:alpine as server 
+
+WORKDIR /server 
+
+COPY package.json /server
+
+COPY tsconfig.json /server
+
+COPY hello.ts /server
+
+RUN npm install
+
+COPY . /server
+
+CMD ["npm", "run", "start:docker"]
