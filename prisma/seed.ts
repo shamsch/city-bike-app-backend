@@ -2,11 +2,17 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+const JOURNEY_AFTER_SEED = 3123974;
+const STATION_AFTER_SEED = 456;
+
 export const seed = async () => {
 	const journeysCount = await prisma.journey.count();
 	const stationsCount = await prisma.station.count();
 
-	if (journeysCount > 0 && stationsCount > 0) {
+	if (
+		journeysCount >= JOURNEY_AFTER_SEED &&
+		stationsCount >= STATION_AFTER_SEED
+	) {
 		console.log("Database already seeded");
 		return;
 	}
