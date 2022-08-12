@@ -25,7 +25,7 @@ services:
     stdin_open: true
     tty: true
     ports:
-      - '3000:3000'
+      - '3001:3001'
     restart: always
     environment:
       - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
