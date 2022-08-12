@@ -27,20 +27,44 @@ export const getAllJourneys = async (
 	let durationQuery = {};
 	let distanceQuery = {};
 
-	if (durationMax > 0) {
+	if (distanceMin > 0 && distanceMax > 0) {
+		distanceQuery = {
+			covered_distance: {
+				gte: kilometersToMeters(distanceMin),
+				lte: kilometersToMeters(distanceMax),
+			},
+		};
+	} else if (distanceMin > 0) {
+		distanceQuery = {
+			covered_distance: {
+				gte: kilometersToMeters(distanceMin),
+			},
+		};
+	} else if (distanceMax > 0) {
+		distanceQuery = {
+			covered_distance: {
+				lte: kilometersToMeters(distanceMax),
+			},
+		};
+	}
+
+	if (durationMin > 0 && durationMax > 0) {
 		durationQuery = {
 			duration: {
 				gte: minutesToSeconds(durationMin),
 				lte: minutesToSeconds(durationMax),
 			},
 		};
-	}
-
-	if (distanceMax > 0) {
-		distanceQuery = {
-			covered_distance: {
-				gte: kilometersToMeters(distanceMin),
-				lte: kilometersToMeters(distanceMax),
+	} else if (durationMin > 0) {
+		durationQuery = {
+			duration: {
+				gte: minutesToSeconds(durationMin),
+			},
+		};
+	} else if (durationMax > 0) {
+		durationQuery = {
+			duration: {
+				lte: minutesToSeconds(durationMax),
 			},
 		};
 	}
