@@ -6,8 +6,6 @@ COPY package.json /server
 
 RUN npm install
 
-EXPOSE 4000
-
 COPY . /server
 
 CMD ["npm", "run", "start:docker"]
