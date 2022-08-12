@@ -3,3 +3,6 @@ Dockerfile
 compose.yaml
 .dockerignore
 .git
+/data/postgres
+dist 
+node_modules
