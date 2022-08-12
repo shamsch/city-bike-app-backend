@@ -146,6 +146,36 @@ describe("GET /api/journey", () => {
 		);
 	});
 
+	it("has duration filter with only min or max", async () => {
+		const durationMin = 1.2;
+
+		const durationResponse = await request(app).get(
+			`/api/journey?durationMin=${durationMin}&&orderBy=duration`
+		);
+
+		expect(durationResponse.status).to.equal(200);
+		expect(durationResponse.body.journeys).to.be.an("array");
+		expect(durationResponse.body.journeys).to.have.lengthOf(10);
+		expect(durationResponse.body.journeys[0].duration).to.be.greaterThanOrEqual(
+			durationMin
+		);
+	});
+
+	it("has duration filter with only max", async () => {
+		const durationMax = 1.2;
+
+		const durationResponse = await request(app).get(
+			`/api/journey?durationMax=${durationMax}&&orderBy=duration`
+		);
+
+		expect(durationResponse.status).to.equal(200);
+		expect(durationResponse.body.journeys).to.be.an("array");
+		expect(durationResponse.body.journeys).to.have.lengthOf(10);
+		expect(durationResponse.body.journeys[0].duration).to.be.lessThanOrEqual(
+			durationMax
+		);
+	});
+
 	it("have covered distance min and max filter", async () => {
 		// unit is km
 		const coveredDistanceMin = 0.1;
@@ -166,6 +196,34 @@ describe("GET /api/journey", () => {
 			).to.be.lessThanOrEqual(coveredDistanceMax);
 		}
 	});
+});
+
+it("have covered distance filter with only min or max", async () => {
+	const coveredDistanceMin = 0.1;
+
+	const coveredDistanceResponse = await request(app).get(
+		`/api/journey?distanceMin=${coveredDistanceMin}&&orderBy=covered_distance`
+	);
+
+	expect(coveredDistanceResponse.status).to.equal(200);
+	expect(coveredDistanceResponse.body.journeys).to.be.an("array");
+	expect(coveredDistanceResponse.body.journeys).to.have.lengthOf(10);
+	expect(
+		coveredDistanceResponse.body.journeys[0].covered_distance
+	).to.be.greaterThanOrEqual(coveredDistanceMin);
+
+	const coveredDistanceMax = 0.1;
+
+	const coveredDistanceResponseMax = await request(app).get(
+		`/api/journey?distanceMax=${coveredDistanceMax}&&orderBy=covered_distance`
+	);
+
+	expect(coveredDistanceResponseMax.status).to.equal(200);
+	expect(coveredDistanceResponseMax.body.journeys).to.be.an("array");
+	expect(coveredDistanceResponseMax.body.journeys).to.have.lengthOf(10);
+	expect(
+		coveredDistanceResponseMax.body.journeys[0].covered_distance
+	).to.be.lessThanOrEqual(coveredDistanceMax);
 });
 
 describe("GET /api/journey/maximum", () => {
