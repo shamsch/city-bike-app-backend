@@ -1,7 +1,9 @@
 version: '3.8'
 services:
   postgres:
-    image: postgres:alpine
+    build:
+      context: .
+      dockerfile: /Dockerfile.database
     ports:
       - '5432:5432'
     environment:
@@ -12,13 +14,16 @@ services:
       - ./data/postgres:/var/lib/postgresql/data
     restart: always
   nodejs-backend:
-    build: .
+    build:
+      context: .
+      dockerfile: /Dockerfile.server
     stdin_open: true
     tty: true
     ports:
-      - '4000:4000'
+      - '3000:3000'
     restart: always
     environment:
       - DATABASE_URL=postgres://postgres:postgres@postgres:5432/postgres
+      - PORT=3000
     depends_on:
       - postgres
