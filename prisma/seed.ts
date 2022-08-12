@@ -1,66 +1,23 @@
 import { PrismaClient } from "@prisma/client";
-import csv from "csv-parser";
-import fs from "fs";
-import path from "path";
 
 const prisma = new PrismaClient();
 
 export const seed = async () => {
-	await prisma.station.deleteMany({});
+	const journeysCount = await prisma.journey.count();
+	const stationsCount = await prisma.station.count();
+
+	if (journeysCount > 0 && stationsCount > 0) {
+		console.log("Database already seeded");
+		return;
+	}
+
 	await prisma.journey.deleteMany({});
-
-	fs.createReadStream(path.join(__dirname, "../csv/validated/stations.csv"))
-		.pipe(csv())
-		.on("data", async (data: any) => {
-			await prisma.station.create({
-				data: {
-					id: Number(data["id"]),
-					name: String(data["name"]),
-					lat: Number(data["lat"]),
-					lon: Number(data["lon"]),
-					address: String(data["address"]),
-					capacity: Number(data["capacity"]),
-				},
-			});
-		});
-
-	console.log("successfully seeded stations, now seeding journeys ...");
-
-	fs.createReadStream(path.join(__dirname, "../csv/validated/journey_all.csv"))
-		.pipe(csv())
-		.on("data", async (data: any) => {
-			const departureStation = await prisma.station.findUnique({
-				where: {
-					id: Number(data["departure_station_id"]),
-				},
-			});
-			const returnStation = await prisma.station.findUnique({
-				where: {
-					id: Number(data["return_station_id"]),
-				},
-			});
-
-			if (!departureStation || !returnStation) {
-				return;
-			}
-
-			await prisma.journey.create({
-				data: {
-					covered_distance: Number(data["covered_distance"]),
-					departure_station: String(data["departure_station"]),
-					departure_time: new Date(data["departure_time"]),
-					duration: Number(data["duration"]),
-					departure_station_id: Number(data["departure_station_id"]),
-					month: String(data["month"]),
-					return_station: String(data["return_station"]),
-					return_time: new Date(data["return_time"]),
-					return_station_id: Number(data["return_station_id"]),
-				},
-			});
-		})
-		.on("error", (err: any) => {
-			console.log(err);
-		});
+	await prisma.station.deleteMany({});
+	await prisma.$executeRaw`COPY "Station" ("id", "name", "address", "capacity", "lon", "lat") FROM '/csv/validated/stations.csv' WITH DELIMITER ',' CSV HEADER;`;
+	console.log("Seeding complete for stations");
+	await prisma.$executeRaw`COPY "Journey" (
+		"departure_time","return_time","departure_station_id","departure_station","return_station_id","return_station","duration","covered_distance","month") FROM '/csv/validated/journey_all.csv' WITH DELIMITER ',' CSV HEADER;`;
+	console.log("Seeding complete for journeys");
 };
 
 seed()
