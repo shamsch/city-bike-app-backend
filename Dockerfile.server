@@ -4,6 +4,10 @@ WORKDIR /server
 
 COPY package.json /server
 
+# copies the tsconfig and hello.ts file because the deployment needs posintsall command 
+# that runs `tsc` to compile the typescript files but docker doesn't copy any *.ts files before npm install
+# so we copy just the tsconfig and hello.ts file and compile them in the container to prevent the build from failing
+
 COPY tsconfig.json /server
 
 COPY hello.ts /server
