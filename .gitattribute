@@ -1,1 +1,1 @@
-*.ipynb linguist-vendored #to ignore all ipynb files
+data/validate.ipynb linguist-vendored 
