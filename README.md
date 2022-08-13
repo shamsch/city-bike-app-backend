@@ -3,6 +3,11 @@
 This is the backend of the City Bike App. It is an express REST API server. The API is hosted live on Heroku. Link should be in GitHub repo.
 Read more about the project in the frontend [README.md](https://github.com/shamsch/city-bike-app-frontend/tree/main) file. The documentation of this API is available [here](#api-documentation). 
 
+<br/>
+
+**HUOM! Because the app is hosted on free version of Heroku, it goes to sleep after a certain time, so when opening/sending request for the first time, it takes roughly another extra half a minute for it to spin up. Please wait while it does that.**
+
+
 ## TECHNOLOGIES USED
 * [Node.js](https://nodejs.org/)
 * [Express](https://expressjs.com/)
