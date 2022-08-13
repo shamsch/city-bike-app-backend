@@ -1,18 +1,45 @@
-# PROJECT IN PROGRESS
+# City Bike App Backend
 
-The README.md file will be ready shortly (before 14th August 2022).
+This is the backend of the City Bike App. It is an express REST API server. The API is hosted live on Heroku. Link should be in GitHub repo.
+Read more about the project in the frontend [README.md](https://github.com/shamsch/city-bike-app-frontend/tree/main) file. The documentation of this API is available [here](#api-documentation). 
 
 ## TECHNOLOGIES USED
+* [Node.js](https://nodejs.org/)
+* [Express](https://expressjs.com/)
+* [PostgreSQL](https://www.postgresql.org/)
+* [TypeScript](https://www.typescriptlang.org/)
+* [Prisma ORM](https://www.prisma.io/)
+* [Docker](https://www.docker.com/)
+* [Chai](https://www.chaijs.com/)
+* [Mocha](https://mochajs.org/)
+* [Supertest]()
+* [Git](https://git-scm.com/)
+* [Morgan]()
+## DOCKER
 
-TO BE ADDED LATER
+Make sure you have Docker installed on your machine. If you don't, you can install it by following the instructions [here](https://www.docker.com/community-edition/downloads/). To run the backend on a docker container, you can use the following command:
 
-## DEVELOPMENT WORKFLOW
+```
+docker compose up
+```
+The backend will be served on `http://localhost:3001/api/` on your local machine. You can test the backend with Postman, CURL or any other HTTP client. To connect the frontend to the backend running on docker, checkout to the [docker-version](https://github.com/shamsch/city-bike-app-frontend/tree/docker-version) branch on the [frontend](https://github.com/shamsch/city-bike-app-frontend/tree/main) and simply run the following command:
 
-TO BE ADDED LATER
+```
+npm run start
+```
 
 ## TESTING
 
-TO BE ADDED LATER
+Testing has been separated into the [test](https://github.com/shamsch/city-bike-app-backend/tree/test) branch. Please checkout to that branch and run the following command:
+
+```
+npm run test
+```
+Testing is done on a Supabase hosted PSQL database that has fewer `journey` to not have any test data in the production database, thus the separation of the test into a separate branch.
+
+## Test results: 
+
+![test results](https://i.ibb.co/gM9JZjs/image.png)
 
 ## API DOCUMENTATION
 
