@@ -13,6 +13,11 @@ app.use(morgan("dev"));
 app.use("/api/journey", journeyRouter);
 app.use("/api/station", stationRouter);
 
+app.use("/", (_req, res) => {
+    res.send("Welcome to the City Bike App API");
+});
+
+
 const PORT = process.env.PORT || 4000;
 
 app.listen(PORT, () => console.log("Server started on port " + PORT));
