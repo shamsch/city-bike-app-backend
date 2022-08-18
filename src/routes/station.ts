@@ -15,6 +15,7 @@ import {
 	StationPostRequest,
 	StationPostResponse,
 } from "../types";
+import redis from "../utils/redisConnection";
 import { validateMonth } from "../utils/validateMonthAndDate";
 
 const stationRouter = Router();
@@ -44,15 +45,22 @@ stationRouter.get(
 				? req.query.month
 				: undefined
 			: "";
-
+		const redisKey = `station:${id}:${month}`;
 		if (isNaN(id)) {
 			res.status(400).json({ error: "Invalid id" });
 		} else {
-			const station = await getStationById(id, month);
-			if (!station) {
-				res.status(404).json({ error: "Station not found" });
+			const cached = await redis.exists(redisKey);
+			if(cached) {
+				const station = await redis.get(redisKey);
+				station ? res.json(JSON.parse(station)) : null;
 			} else {
-				res.json(station);
+				const station = await getStationById(id, month);
+				if (!station) {
+					res.status(404).json({ error: "Station not found" });
+				} else {
+					await redis.set(redisKey, JSON.stringify(station));
+					res.json(station);
+				}
 			}
 		}
 	}
