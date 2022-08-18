@@ -7,6 +7,7 @@ import {
 	JourneyGetResponse,
 	JourneyPostRequest,
 } from "../types";
+import redis from "../utils/redisConnection";
 import { validateOrderBy, validateOrderDir } from "../utils/validateJourney";
 import { validateDate, validateMonth } from "../utils/validateMonthAndDate";
 
@@ -85,6 +86,7 @@ journeyRouter.post(
 			);
 
 			if (journey) {
+				await redis.flushAll();
 				res.json(journey);
 			} else {
 				res.status("400").json({ error: "Journey could not be added" });

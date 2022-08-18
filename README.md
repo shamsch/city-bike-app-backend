@@ -3,11 +3,6 @@
 This is the backend of the City Bike App. It is an express REST API server. The API is hosted live on Heroku. Link should be in GitHub repo.
 Read more about the project in the frontend [README.md](https://github.com/shamsch/city-bike-app-frontend/tree/main) file. The documentation of this API is available [here](#api-documentation). 
 
-<br/>
-
-**HUOM! Because the app is hosted on free version of Heroku, it goes to sleep after a certain time, so when opening/sending request for the first time, it takes roughly another extra half a minute for it to spin up. Please wait while it does that.**
-
-
 ## TECHNOLOGIES USED
 * [Node.js](https://nodejs.org/)
 * [Express](https://expressjs.com/)
@@ -20,6 +15,7 @@ Read more about the project in the frontend [README.md](https://github.com/shams
 * [Supertest]()
 * [Git](https://git-scm.com/)
 * [Morgan]()
+* [Redis](https://redis.io/)
 ## DOCKER
 
 Make sure you have Docker installed on your machine. If you don't, you can install it by following the instructions [here](https://www.docker.com/community-edition/downloads/). To run the backend on a docker container, you can use the following command:
@@ -50,6 +46,9 @@ Testing is done on a Supabase hosted PSQL database that has fewer `journey` to n
 
 The documentation for all endpoints, along with type of request, parameters, request body, request token, and return value descriptions, is available can be found down below.
 
+## Caching: 
+
+Caching has been done on `/api/station/:id` endpoint. The caching is done on the server side with Redis. All the cache is flushed when a new journey is added. Not the most efficient way to do it, but I wanted to make opening the individual station page faster.
 ### API Endpoints:
 
 #### Endpoint: /api/journey/
